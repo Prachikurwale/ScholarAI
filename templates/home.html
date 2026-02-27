@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScholarAI - Government Scholarships Made For You</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, #052692 0%, #5c95f1 100%);
+        }
+         html {
+        scroll-behavior: smooth;
+    }
+
+    
+    </style>
+</head>
+<body class="bg-white font-sans">
+
+    <nav class="flex items-center justify-between px-10 py-4 bg-white shadow-sm sticky top-0 z-50">
+    <div class="flex items-center space-x-2">
+        <div class=" p-2 rounded-lg">
+            <i class="fas fa-graduation-cap text-blue-900 text-xl"></i>
+        </div>
+        <span class="text-2xl font-bold text-blue-900 italic">ScholarAI</span>
+    </div>
+
+    <div class="hidden md:flex space-x-8 text-gray-600 font-medium text-sm">
+       <a href="#features" class="hover:text-blue-600">Features</a>
+       <a href="#about" class="hover:text-blue-600">About</a>
+        
+    </div>
+
+  <div class="flex items-center space-x-4">
+    {% if current_user.is_authenticated %}
+        <a href="{{ url_for('dashboard') }}" class="text-blue-900 font-bold text-sm">My Dashboard</a>
+        <a href="{{ url_for('logout') }}" class="bg-red-100 text-red-600 px-4 py-2 rounded-lg font-bold text-sm">Logout</a>
+        
+     
+</div>
+    {% else %}
+        <a href="{{ url_for('login') }}" class="text-blue-900 font-bold text-sm">Login</a>
+        <a href="{{ url_for('signup') }}" class="bg-blue-900 text-white px-6 py-2 rounded-sm font-bold text-sm hover:bg-blue-800 transition">Check Eligibility</a>
+    {% endif %}
+</div>
+</nav>
+
+    <section class="hero-gradient text-white pt-20 pb-32 px-10 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 z-10">
+                <span class="bg-blue-400 bg-opacity-30 text-xs px-3 py-1 rounded-full font-bold uppercase tracking-wider">
+                    <i class="fas fa-university mr-2"></i> Official Government Data
+                </span>
+                <h1 class="text-6xl font-extrabold mt-6 leading-tight">
+                    Find Government <br> <span class="text-blue-200 underline decoration-dotted decoration-4 underline-offset-8">Scholarships</span> Made For You
+                </h1>
+                <p class="mt-8 text-lg text-blue-100 max-w-lg leading-relaxed">
+                    AI-powered personalized scheme recommendations. Check your eligibility in under 2 minutes across 500+ verified government schemes.
+                </p>
+               <div class="mt-10 flex space-x-4">
+    <a href="{{ url_for('signup') }}" class="bg-white text-blue-900 px-8 py-4 rounded-sm font-bold text-lg hover:shadow-xl transition flex items-center">
+        Check My Eligibility <i class="fas fa-arrow-right ml-3"></i>
+    </a>
+</div>
+                <div class="mt-10 flex space-x-6 text-sm font-medium opacity-80">
+                    <span><i class="fas fa-check-circle mr-2"></i> Free to use</span>
+                   
+                    <span><i class="fas fa-check-circle mr-2"></i> Instant results</span>
+                </div>
+            </div>
+            <div class="md:w-1/2 mt-16 md:mt-0 relative">
+                <div class="bg-white bg-opacity-10 p-8 rounded-3xl backdrop-blur-md border border-white border-opacity-20 shadow-2xl">
+                    <img src=" https://images.shiksha.com/mediadata/images/articles/1722862500phpp4DMhi.jpeg" alt="AI Analysis" class="rounded-2xl w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="max-w-7xl mx-auto -mt-16 relative z-20 px-10">
+        <div class="bg-blue-900 rounded-sm p-10 grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white shadow-2xl">
+            <div>
+                <p class="text-4xl font-extrabold">500+</p>
+                <p class="text-blue-300 text-sm mt-2">Government Schemes</p>
+            </div>
+            <div>
+                <p class="text-4xl font-extrabold">2.4M+</p>
+                <p class="text-blue-300 text-sm mt-2">Students Helped</p>
+            </div>
+            <div>
+                <p class="text-4xl font-extrabold">98%</p>
+                <p class="text-blue-300 text-sm mt-2">Match Accuracy</p>
+            </div>
+            <div>
+                <p class="text-4xl font-extrabold">28</p>
+                <p class="text-blue-300 text-sm mt-2">States Covered</p>
+            </div>
+        </div>
+    </div>
+
+    <section id="features" class="py-24 bg-gray-50 px-10">
+        <div class="text-center mb-16">
+            <span class="bg-blue-100 text-blue-600 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">Why ScholarAI?</span>
+            <h2 class="text-4xl font-extrabold text-blue-900 mt-4">Everything You Need to Secure Your Future</h2>
+            <p class="text-gray-500 mt-4 max-w-xl mx-auto">We simplify the complex world of government scholarships so you can focus on studying.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            <div class="bg-white p-10 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all group">
+                <div class="bg-blue-50 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-900 transition-colors">
+                    <i class="fas fa-brain text-blue-600 text-2xl group-hover:text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-blue-900">Personalized Matching</h3>
+                <p class="text-gray-500 mt-4 leading-relaxed">Our AI analyzes your profile against 500+ verified government schemes to find your best matches instantly.</p>
+                 
+            </div>
+
+            <div class="bg-white p-10 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all group">
+                <div class="bg-blue-50 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-900 transition-colors">
+                    <i class="fas fa-shield-alt text-blue-600 text-2xl group-hover:text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-blue-900">Verified Eligibility Check</h3>
+                <p class="text-gray-500 mt-4 leading-relaxed">Every scheme is verified from official government portals. No outdated information, ever.</p>
+                 
+            </div>
+
+            <div class="bg-white p-10 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all group">
+                <div class="bg-blue-50 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-900 transition-colors">
+                    <i class="fas fa-language text-blue-600 text-2xl group-hover:text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-blue-900">Multi-language Support</h3>
+                <p class="text-gray-500 mt-4 leading-relaxed">Available in English and Hindi so every student across India can access the right schemes.</p>
+                 
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 bg-white px-10">
+        <div class="text-center mb-16">
+            <span class="bg-blue-100 text-blue-600 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">Simple Process</span>
+            <h2 class="text-4xl font-extrabold text-blue-900 mt-4 font-serif italic">How It Works</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto text-center relative">
+            <div class="flex flex-col items-center">
+                <div class="relative">
+                    <div class="bg-blue-900 w-20 h-20 rounded-2xl flex items-center justify-center text-white text-3xl mb-6 shadow-xl z-10 relative">
+                        <i class="fas fa-user-edit"></i>
+                    </div>
+                    <span class="absolute -top-5 -right-3 bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs">01</span>
+                </div>
+                <h4 class="font-bold text-xl text-blue-900">Enter Your Profile</h4>
+                <p class="text-gray-500 mt-4 text-sm px-4">Fill in basic details like age, income, category, and education level.</p>
+            </div>
+            <div class="flex flex-col items-center">
+                <div class="relative">
+                    <div class="bg-blue-900 w-20 h-20 rounded-2xl flex items-center justify-center text-white text-3xl mb-6 shadow-xl z-10 relative">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <span class="absolute -top-5 -right-3 bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs">02</span>
+                </div>
+                <h4 class="font-bold text-xl text-blue-900">AI Analyzes Eligibility</h4>
+                <p class="text-gray-500 mt-4 text-sm px-4">Our AI cross-references your profile with 500+ government scheme criteria.</p>
+            </div>
+            <div class="flex flex-col items-center">
+                <div class="relative">
+                    <div class="bg-blue-900 w-20 h-20 rounded-2xl flex items-center justify-center text-white text-3xl mb-6 shadow-xl z-10 relative">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <span class="absolute -top-5 -right-3 bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs">03</span>
+                </div>
+                <h4 class="font-bold text-xl text-blue-900">Get Your Matches</h4>
+                <p class="text-gray-500 mt-4 text-sm px-4">View personalized scheme recommendations ranked by eligibility score.</p>
+            </div>
+        </div>
+
+        <div class="mt-20 text-center">
+            <a href="{{ url_for('google.login') }}" class="bg-blue-900 text-white px-10 py-4 rounded-sm font-bold text-lg hover:bg-blue-800 shadow-xl transition">
+                Start Now — It's Free <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-blue-900 text-white pt-20 pb-10 px-10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-blue-800 pb-16">
+            <div class="col-span-1">
+                <div class="flex items-center space-x-2 mb-6">
+                    <i class="fas fa-graduation-cap text-white text-2xl"></i>
+                    <span class="text-2xl font-bold italic">ScholarAI</span>
+                </div>
+                <p class="text-blue-300 text-sm leading-relaxed">
+                    AI-powered scholarship discovery for every Indian student. Helping you navigate the path to success.
+                </p>
+            </div>
+            <div>
+                <h5 class="font-bold mb-6">Quick Links</h5>
+                <ul class="text-blue-300 space-y-4 text-sm">
+                    <li><a href="#about" class="hover:text-white transition">About Us</a></li>
+                     
+                    <li><a href="#dashboard" class="hover:text-white transition">Dashboard</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-bold mb-6">Legal</h5>
+                <ul class="text-blue-300 space-y-4 text-sm">
+                    <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-white transition">Terms of Use</a></li>
+                    
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-bold mb-6">Contact</h5>
+                <ul class="text-blue-300 space-y-4 text-sm">
+                    <li><i class="fas fa-envelope mr-3"></i> help@scholarai.gov.in</li>
+                    <li><i class="fas fa-phone mr-3"></i> 8234424532</li>
+                    <li><i class="fas fa-globe mr-3"></i> scholarai.gov.in</li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between pt-8 text-xs text-blue-400">
+            <p>© 2026 ScholarAI. Data sourced from official government portals.</p>
+            <p><i class="fas fa-shield-check mr-2"></i> Government Data Verified</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+

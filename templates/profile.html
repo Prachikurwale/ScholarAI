@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScholarAI - Complete Your Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+         input:invalid:focused, select:invalid:focused {
+            border-color: #ef4444;
+        }
+        
+         
+        .error-message {
+            display: none;
+        }
+        input:invalid ~ .error-message, select:invalid ~ .error-message {
+            display: block;
+            color: #ef4444;
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+        }
+    </style>
+</head>
+<body class="bg-blue-50 font-sans min-h-screen">
+
+  <div class="bg-gradient-to-br from-blue-600 via-blue-500 to-indigo-700 pt-8 pb-32 px-10 text-white shadow-lg">
+
+    <div class="p-6">
+        <a href="{{ url_for('index') }}" class="flex items-center space-x-3 text-blue-100 hover:text-white transition text-sm">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to Home</span>
+        </a>
+    </div>
+
+    <div class="max-w-4xl mx-auto">
+        <div class="flex items-center space-x-3 mb-6">
+        </div>
+        <h1 class="text-4xl font-extrabold tracking-tight">Enter Your Details to Find Eligible Schemes</h1>
+        <p class="text-blue-100 mt-3 text-sm font-medium opacity-90">
+            <i class="fas fa-shield-alt mr-2"></i> All information is used only for scheme matching and is never stored or shared.
+        </p>
+    </div>
+</div>
+
+    <div class="max-w-7xl mx-auto -mt-20 px-4 pb-20">
+        <div class="bg-white  p-10 shadow-lg">
+            <form action="{{ url_for('save_profile') }}" method="POST" class="space-y-10">
+                
+                <div>
+                    <h3 class="text-lg font-bold text-blue-900 mb-6 border-b pb-2">Personal Information</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+                        
+                        <div class="relative">
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Full Name <span class="text-red-500">*</span></label>
+                            <input type="text" name="full_name" placeholder="e.g. Arjun Kumar" required
+                                   class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Age <span class="text-red-500">*</span></label>
+                            <input type="number" name="age" placeholder="e.g. 20" required min="1" max="100"
+                                   class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Gender <span class="text-red-500">*</span></label>
+                            <select name="gender" required class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white focus:border-blue-500 outline-none transition">
+                                <option value="" disabled selected>Select gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div>
+    <label class="block text-sm font-bold text-gray-700 mb-2">State / UT <span class="text-red-500">*</span></label>
+    <select name="state" required class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white focus:border-blue-500 outline-none transition">
+        <option value="" disabled selected>Select your state</option>
+        
+        <option value="Andhra Pradesh">Andhra Pradesh</option>
+        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+        <option value="Assam">Assam</option>
+        <option value="Bihar">Bihar</option>
+        <option value="Chhattisgarh">Chhattisgarh</option>
+        <option value="Goa">Goa</option>
+        <option value="Gujarat">Gujarat</option>
+        <option value="Haryana">Haryana</option>
+        <option value="Himachal Pradesh">Himachal Pradesh</option>
+        <option value="Jharkhand">Jharkhand</option>
+        <option value="Karnataka">Karnataka</option>
+        <option value="Kerala">Kerala</option>
+        <option value="Madhya Pradesh">Madhya Pradesh</option>
+        <option value="Maharashtra">Maharashtra</option>
+        <option value="Manipur">Manipur</option>
+        <option value="Meghalaya">Meghalaya</option>
+        <option value="Mizoram">Mizoram</option>
+        <option value="Nagaland">Nagaland</option>
+        <option value="Odisha">Odisha</option>
+        <option value="Punjab">Punjab</option>
+        <option value="Rajasthan">Rajasthan</option>
+        <option value="Sikkim">Sikkim</option>
+        <option value="Tamil Nadu">Tamil Nadu</option>
+        <option value="Telangana">Telangana</option>
+        <option value="Tripura">Tripura</option>
+        <option value="Uttar Pradesh">Uttar Pradesh</option>
+        <option value="Uttarakhand">Uttarakhand</option>
+        <option value="West Bengal">West Bengal</option>
+
+       
+       
+       
+     
+       
+        
+    </select>
+</div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Category <span class="text-red-500">*</span></label>
+                            <select name="category" required class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white focus:border-blue-500 outline-none transition">
+                                <option value="" disabled selected>Select category</option>
+                                <option value="General">General</option>
+                                <option value="OBC">OBC</option>
+                                <option value="SC">SC</option>
+                                <option value="ST">ST</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Annual Family Income (₹) <span class="text-red-500">*</span></label>
+                            <input type="number" name="income" placeholder="e.g. 250000" required
+                                   class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition">
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-blue-900 mb-6 border-b pb-2">Education Details</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+                        
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Education Level <span class="text-red-500">*</span></label>
+                            <select name="education" required class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white focus:border-blue-500 outline-none transition">
+                                <option value="" disabled selected>Select education level</option>
+                                <option value="10th">10th Pass</option>
+                                <option value="12th">12th Pass</option>
+                                <option value="Undergraduate">Undergraduate</option>
+                                <option value="Postgraduate">Postgraduate</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Course / Stream <span class="text-red-500">*</span></label>
+                            <input type="text" name="course" placeholder="e.g. B.Tech Computer Science" required
+                                   class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-blue-500 outline-none transition">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <label class="block text-sm font-bold text-gray-700">Do you have any disability? <span class="text-red-500">*</span></label>
+                    <div class="flex space-x-6">
+                        <label class="flex items-center space-x-2 cursor-pointer">
+                            <input type="radio" name="disability" value="Yes" required class="w-4 h-4 text-blue-600">
+                            <span class="text-gray-700">Yes</span>
+                        </label>
+                        <label class="flex items-center space-x-2 cursor-pointer">
+                            <input type="radio" name="disability" value="No" required class="w-4 h-4 text-blue-600">
+                            <span class="text-gray-700">No</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="pt-8 border-t flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+                    <p class="text-xs text-orange-500 flex items-center italic">
+                        <i class="fas fa-lock mr-2"></i> Your data is used only for eligibility matching. We do not store personal information.
+                    </p>
+                    <button type="submit" class="bg-blue-900 text-white px-10 py-4 rounded-xl font-bold hover:bg-blue-800 transition flex items-center shadow-lg">
+                        Find My Schemes <i class="fas fa-arrow-right ml-3"></i>
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
