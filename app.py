@@ -19,7 +19,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 load_dotenv()
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'scholar_secret_123' 
+
+ 
+app.config['SECRET_KEY'] = os.getenv('FLASK_SECRET_KEY', 'dev_key_123_local')
 
  
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
