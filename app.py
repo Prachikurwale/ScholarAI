@@ -1,4 +1,5 @@
 import os
+os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
 import json
 from flask import Flask, render_template, request, redirect, url_for
 from openai import OpenAI
@@ -25,6 +26,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
+with app.app_context():
+    db.create_all()
  
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
