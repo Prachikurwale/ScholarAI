@@ -27,6 +27,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 with app.app_context():
+    print("Checking/Creating database tables...")
+    db.create_all()  # Ye line 'user' aur 'scholarship' tables bana degi agar wo nahi hain
+    print("✅ Database tables are ready!")
     db.create_all()
  
 class User(UserMixin, db.Model):
