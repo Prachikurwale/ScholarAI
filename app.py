@@ -19,8 +19,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 load_dotenv()
 
 app = Flask(__name__)
-
- 
+from werkzeug.middleware.proxy_fix import ProxyFix
+app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
 app.config['SECRET_KEY'] = os.getenv('FLASK_SECRET_KEY', 'dev_key_123_local')
 
  
@@ -30,7 +30,7 @@ db = SQLAlchemy(app)
 
 with app.app_context():
     print("Checking/Creating database tables...")
-    db.create_all()  # Ye line 'user' aur 'scholarship' tables bana degi agar wo nahi hain
+    db.create_all()   
     print("✅ Database tables are ready!")
     db.create_all()
  
@@ -363,7 +363,7 @@ def test_mail():
                       sender=app.config['MAIL_USERNAME'],
                       
                       recipients=[current_user.email])
-        msg.body = "Agar ye mail mil raha hai, toh setup sahi hai!"
+        msg.body = "mail !"
         mail.send(msg)
         return "✅ Mail Sent Successfully! Check your inbox."
     except Exception as e:
