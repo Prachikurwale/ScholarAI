@@ -373,6 +373,8 @@
 #     app.run(debug=True)
 
 
+
+
 import os
 import json
 from datetime import datetime
@@ -399,9 +401,7 @@ app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
 
 app.config['SECRET_KEY'] = os.getenv('FLASK_SECRET_KEY', 'dev_key_123_local')
 
-# 2. FIX: Database configuration
-# Note: On Render, SQLite data will disappear on restart. 
-# Consider using Render PostgreSQL for a permanent database.
+ 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///database.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -461,8 +461,7 @@ blueprint = make_google_blueprint(
 )
 app.register_blueprint(blueprint, url_prefix="/login")
 
-# --- Routes ---
-
+ 
 @app.route('/')
 def index():
     return render_template('home.html')
@@ -505,11 +504,11 @@ def login():
         else:
             flash("Invalid credentials!")
     return render_template('login.html')
-# app.py mein kahin bhi routes ke beech mein dalo
+ 
 @app.route('/force-scrape')
 def force_scrape():
     try:
-        # Aapki scraper file ka naam agar 'scraper.py' hai aur function 'run_scraper'
+        
         from scraper import run_scraper 
         run_scraper()
         return "✅ Scraper finished! Data added to database."
