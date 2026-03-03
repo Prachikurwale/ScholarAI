@@ -505,6 +505,16 @@ def login():
         else:
             flash("Invalid credentials!")
     return render_template('login.html')
+# app.py mein kahin bhi routes ke beech mein dalo
+@app.route('/force-scrape')
+def force_scrape():
+    try:
+        # Aapki scraper file ka naam agar 'scraper.py' hai aur function 'run_scraper'
+        from scraper import run_scraper 
+        run_scraper()
+        return "✅ Scraper finished! Data added to database."
+    except Exception as e:
+        return f"❌ Error: {str(e)}"
 
 @app.route('/logout')
 def logout():
