@@ -31,6 +31,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 with app.app_context():
+    if not os.path.exists(instance_path):
+        os.makedirs(instance_path)
     print("Checking/Creating database tables...")
     db.create_all()   
     print("✅ Database tables are ready!")
