@@ -375,8 +375,8 @@ def test_mail():
 @app.route('/force-scrape')
 def force_scrape_route():
     try:
-        # Sahi function name import karein
-        from scraper import scrape_scholarships 
+         
+        from scraper import scrape_scholarships
         scrape_scholarships() 
         return "✅ Scraper finished! Data added to database."
     except Exception as e:
@@ -384,7 +384,8 @@ def force_scrape_route():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host='0.0.0.0', port=port)
 
 
 
