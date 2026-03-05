@@ -15,6 +15,9 @@ from flask_dance.contrib.google import make_google_blueprint, google
 from flask_dance.consumer import oauth_authorized
 from werkzeug.security import generate_password_hash, check_password_hash
 
+if not os.path.exists('instance'):
+    os.makedirs('instance')
+    
 basedir = os.path.abspath(os.path.dirname(__file__))
 load_dotenv()
 
