@@ -15,10 +15,12 @@ from flask_dance.contrib.google import make_google_blueprint, google
 from flask_dance.consumer import oauth_authorized
 from werkzeug.security import generate_password_hash, check_password_hash
 
-if not os.path.exists('instance'):
-    os.makedirs('instance')
-    
 basedir = os.path.abspath(os.path.dirname(__file__))
+instance_path = os.path.join(basedir, 'instance')
+if not os.path.exists(instance_path):
+    os.makedirs(instance_path)
+
+ 
 load_dotenv()
 
 app = Flask(__name__)
@@ -27,7 +29,7 @@ app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
 app.config['SECRET_KEY'] = os.getenv('FLASK_SECRET_KEY', 'dev_key_123_local')
 
  
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'instance', 'database.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'instance_path', 'database.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
