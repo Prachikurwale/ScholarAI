@@ -1,35 +1,32 @@
 import os
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
 import json
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from openai import OpenAI
 from dotenv import load_dotenv
-from flask import flash
 from flask_mail import Mail, Message
-
-from flask_login import login_required
+from flask_login import login_required, LoginManager, UserMixin, login_user, current_user, logout_user
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager, UserMixin, login_user, current_user, logout_user
 from flask_dance.contrib.google import make_google_blueprint, google
 from flask_dance.consumer import oauth_authorized
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 instance_path = os.path.join(basedir, 'instance')
+ 
 if not os.path.exists(instance_path):
     os.makedirs(instance_path)
 
- 
 load_dotenv()
 
 app = Flask(__name__)
-from werkzeug.middleware.proxy_fix import ProxyFix
 app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
 app.config['SECRET_KEY'] = os.getenv('FLASK_SECRET_KEY', 'dev_key_123_local')
 
  
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'instance_path', 'database.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(instance_path, 'database.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
